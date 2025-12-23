@@ -1,0 +1,19 @@
+name: Bytebase rollout SQL migrations for Production
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "*/overlays/prod/migrations/*.up.sql"
+      - ".github/workflows/sql-rollout.yml" # to allow workflow updates
+
+jobs:
+  rollout:
+    uses: naing2htun/actions/.github/workflows/sql-rollout.yml@main
+    with:
+      bytebase-url: ${{ vars.BYTEBASE_URL_PROD }}
+      bytebase-service-account: ${{ vars.BYTEBASE_SERVICE_ACCOUNT_PROD }}
+    secrets:
+      bytebase-service-account-secret: ${{ secrets.BYTEBASE_SERVICE_ACCOUNT_SECRET_PROD }}
+      access-token: ${{ secrets.GITHUB_TOKEN }}
