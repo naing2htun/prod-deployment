@@ -14,6 +14,7 @@ jobs:
     with:
       bytebase-url: ${{ vars.BYTEBASE_URL_PROD }}
       bytebase-service-account: ${{ vars.BYTEBASE_SERVICE_ACCOUNT_PROD }}
+      plan-type: "prod"
     secrets:
       bytebase-service-account-secret: ${{ secrets.BYTEBASE_SERVICE_ACCOUNT_SECRET_PROD }}
       access-token: ${{ secrets.GITHUB_TOKEN }}
